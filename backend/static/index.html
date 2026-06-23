@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة إدارة VANTAGE</title>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- SVG sprite for icons (fallback) -->
+    <svg style="display:none">
+      <symbol id="icon-orders" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm2 2v7h14v-7H5z"/></symbol>
+      <symbol id="icon-reports" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h4v8H3v-8zm6-6h4v14h-4V7zm6 4h4v10h-4V11z"/></symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24"><path fill="currentColor" d="M19.14 12.936a7.994 7.994 0 000-1.872l2.036-1.58-1.9-3.292-2.4.96a8.027 8.027 0 00-1.62-.94l-.36-2.52H9.2l-.36 2.52c-.56.22-1.08.52-1.58.88l-2.4-.96L3 9.484l2.04 1.58c-.04.3-.04.62 0 .936L3 14.58l1.9 3.292 2.4-.96c.5.36 1.02.66 1.58.88l.36 2.52h4.28l.36-2.52c.56-.22 1.08-.52 1.62-.94l2.4.96L21 14.58l-2.86-1.644zM12 15.5A3.5 3.5 0 1112 8.5a3.5 3.5 0 010 7z"/></symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></symbol>
+      <symbol id="icon-export" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v6h5.66V9h3.84L12 2z"/></symbol>
+      <symbol id="icon-gallery" viewBox="0 0 24 24"><path fill="currentColor" d="M21 19V5H3v14h18zM8.5 13.5l2.5 3.01L14.5 13l4.5 6H5l3.5-5.5z"/></symbol>
+      <symbol id="icon-approve" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></symbol>
+      <symbol id="icon-reject" viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 5.71L12 12l6.3 6.29-1.41 1.41L10.59 13.41 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29 10.59 10.59 16.88 4.29z"/></symbol>
+      <symbol id="icon-hide" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6a9.77 9.77 0 018.94 5.5A9.77 9.77 0 0112 17a9.77 9.77 0 01-8.94-5.5A9.77 9.77 0 0112 6m0-2C7 4 2.73 7.11 1 12c1.73 4.89 6 8 11 8s9.27-3.11 11-8c-1.73-4.89-6-8-11-8z"/></symbol>
+      <symbol id="icon-wallet" viewBox="0 0 24 24"><path fill="currentColor" d="M21 7H3v10h18V7zm0-2a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2h18zM7 12a2 2 0 100-4 2 2 0 000 4z"/></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5c0-3-4-5.5-9-5.5z"/></symbol>
+      <symbol id="icon-id" viewBox="0 0 24 24"><path fill="currentColor" d="M3 4h18v16H3V4zm2 2v12h14V6H5zm3 2h8v2H8V8zm0 4h8v6H8v-6z"/></symbol>
+      <symbol id="icon-money" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1L3 5v6c0 5 3.58 9.74 9 11 5.42-1.26 9-6 9-11V5l-9-4zm1 17.93V20h-2v-1.07C8.67 18.84 7 16.7 7 14h2c0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3V8h2v4.07c2.33.45 4 2.59 4 4.93 0 1.1-.9 2-2 2h-2v-1.07c-1.34-.14-2.66-.57-4-1.07z"/></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 14H5V9h14v9z"/></symbol>
+    </svg>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">لوحة تحكم VANTAGE EXCHANGE</div>
+      <nav class="mainnav">
+        <button id="btnOrders"><span class="material-icons">inventory</span> الطلبات</button>
+        <button id="btnReports"><span class="material-icons">bar_chart</span> التقارير</button>
+        <button id="btnSettings"><span class="material-icons">settings</span> الإعدادات</button>
+      </nav>
+      <div class="auth">
+        <input id="username" placeholder="اسم المستخدم" />
+        <input id="password" type="password" placeholder="كلمة المرور" />
+        <button id="loginBtn">تسجيل دخول</button>
+        <button id="logoutBtn" style="display:none;">خروج</button>
+      </div>
+      <div id="botStatus" style="display:flex;align-items:center;gap:8px;margin-left:12px">
+        <button id="botToggle" title="حالة البوت" style="padding:6px;background:#ddd;border-radius:6px;border:0;">●</button>
+        <span id="botLabel" style="font-size:13px;color:#334155">حالة البوت</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="left">
+        <div class="controls">
+          <label>عرض الحالة:
+            <select id="statusFilter">
+              <option value="ALL">الكل</option>
+              <option value="PENDING">PENDING</option>
+              <option value="COMPLETED">COMPLETED</option>
+              <option value="REJECTED">REJECTED</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="showHidden"/> إظهار الطلبات المخفية</label>
+          <button id="refreshBtn"><span class="material-icons">refresh</span> تحديث</button>
+          <div class="col-controls" style="display:inline-block;position:relative">
+            <button id="colsBtn" style="padding:6px;margin-inline-start:8px">أعمدة</button>
+            <div id="colsPanel" style="display:none;position:absolute;right:0;background:#fff;border:1px solid #ddd;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);z-index:50">
+              <label><input type="checkbox" data-col="col-wallet" checked /> إظهار المحفظة</label><br/>
+              <label><input type="checkbox" data-col="col-payment" checked /> إظهار معلومات الدفع</label><br/>
+              <label><input type="checkbox" data-col="col-currency" checked /> إظهار العملة</label><br/>
+              <label><input type="checkbox" data-col="col-afterconv" checked /> إظهار بعد التحويل</label><br/>
+              <label><input type="checkbox" data-col="col-hash" checked /> إظهار هاش/رمز</label><br/>
+            </div>
+          </div>
+        </div>
+
+        <div id="tableWrap">
+          <table id="txTable">
+            <thead>
+                <tr>
+                  <th class="col-txid">رقم</th>
+                  <th class="col-type">النوع</th>
+                  <th class="col-user">العميل</th>
+                  <th class="col-amount">الكمية</th>
+                  <th class="col-total">الإجمالي</th>
+                  <th class="col-network">الشبكة</th>
+                  <th class="col-wallet">المحفظة/العنوان</th>
+                  <th class="col-payment">طريقة/معلومات الدفع</th>
+                  <th class="col-currency">العملة</th>
+                  <th class="col-afterconv">المبلغ بعد التحويل</th>
+                  <th class="col-hash">رمز/هاش العملية</th>
+                  <th class="col-status">الحالة</th>
+                  <th class="col-created">تاريخ</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <button id="prevPage">السابق</button>
+          <span id="pageInfo">صفحة 1</span>
+          <button id="nextPage">التالي</button>
+        </div>
+      </section>
+
+      <aside class="right">
+        <div id="ordersPane">
+          <h3>تفاصيل الطلب</h3>
+          <div class="detail-toolbar">
+            <button id="copyAllBtn" class="copy-btn"><span class="material-icons">content_copy</span> نسخ الكل</button>
+            <button id="copyJsonBtn" class="copy-btn"><span class="material-icons">code</span> نسخ كـ JSON</button>
+            <button id="exportCsvBtn" class="copy-btn"><span class="material-icons">file_download</span> تصدير CSV</button>
+            <button id="openGalleryBtn" class="copy-btn" style="display:none"><span class="material-icons">photo_library</span> معرض الصور</button>
+            <label>بحث: <input id="queryInput" placeholder="رقم الطلب أو معرف العميل أو محفظة"/></label>
+            <button id="searchBtn">بحث</button>
+          </div>
+          <div class="view-controls">
+            <label><input type="checkbox" id="groupByUser"/> عرض بحسب العميل</label>
+          </div>
+          <div id="details">حدد طلباً لعرض التفاصيل.</div>
+          <div id="proofArea"></div>
+          <div id="messagesPane" style="margin-top:12px;border-top:1px solid #eee;padding-top:8px">
+            <h4>محادثات البوت</h4>
+            <div id="messagesList" style="max-height:180px;overflow:auto;border:1px solid #ddd;padding:8px;background:#fff"></div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <input id="replyTarget" placeholder="user_id or chat_id" style="flex:0 0 220px;padding:6px" />
+              <input id="replyText" placeholder="نص الرسالة" style="flex:1;padding:6px" />
+              <button id="sendReplyBtn">إرسال</button>
+            </div>
+          </div>
+          <div id="galleryModal" class="gallery-modal" style="display:none">
+            <div class="gallery-backdrop" id="galleryBackdrop"></div>
+            <div class="gallery-content">
+              <button id="galleryPrev" class="gallery-nav">‹</button>
+              <img id="galleryImg" src="" alt="Proof"/>
+              <button id="galleryNext" class="gallery-nav">›</button>
+              <button id="galleryClose" class="gallery-close">✕</button>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="approveBtn"><span class="material-icons">check_circle</span> قبول</button>
+            <button id="rejectBtn"><span class="material-icons">cancel</span> رفض</button>
+            <button id="completeBtn"><span class="material-icons">photo_camera</span> إرسال الصورة والإنهاء</button>
+            <button id="hideBtn"><span class="material-icons">visibility_off</span> إخفاء</button>
+          </div>
+        </div>
+
+        <div id="reportsPane" style="display:none">
+          <h3>التقارير <button id="openReportsFull" style="margin-inline-start:12px">افتح صفحة كاملة</button></h3>
+          <div class="report-controls">
+            <label>الفترة: <select id="reportPeriod"><option value="day">يومي</option><option value="week">أسبوعي</option><option value="month" selected>شهري</option></select></label>
+            <label><input type="checkbox" id="comparePrev"/> مقارنة بالفترة السابقة</label>
+            <button id="refreshReports">تحديث</button>
+          </div>
+          <div id="reportsSummary">جارٍ تحميل التقرير...</div>
+          <div class="report-cards" id="reportCards"></div>
+          <div id="topLists" class="report-cards"></div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="flex:1"><div id="reportsChartWrap"><canvas id="reportsChart"></canvas></div></div>
+            <div style="width:320px"><h4>توزيع شراء/بيع</h4><canvas id="buySellChart" style="max-width:300px"></canvas><div id="perfIndicator" style="margin-top:12px"></div></div>
+          </div>
+          
+        </div>
+
+        <div id="settingsPane" style="display:none">
+          <h3>الإعدادات</h3>
+          <div id="settingsForm">
+            <div class="settings-row"><label><span class="material-icons settings-icon">attach_money</span> سعر الدولار (rate_USD): <input id="rate_USD"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">currency_exchange</span> سعر الريال اليمني (rate_YER): <input id="rate_YER"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">local_atm</span> سعر الريال السعودي (rate_SAR): <input id="rate_SAR"/></label></div>
+            <h4 style="margin-top:12px">أسعار الصرف للشراء/البيع المحلية</h4>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_down</span> سعر شراء USD (rate_buy_USD): <input id="rate_buy_USD"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_up</span> سعر بيع USD (rate_sell_USD): <input id="rate_sell_USD"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_down</span> سعر شراء YER (rate_buy_YER): <input id="rate_buy_YER"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_up</span> سعر بيع YER (rate_sell_YER): <input id="rate_sell_YER"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_down</span> سعر شراء SAR (rate_buy_SAR): <input id="rate_buy_SAR"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">trending_up</span> سعر بيع SAR (rate_sell_SAR): <input id="rate_sell_SAR"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">percent</span> نسبة عمولة الشراء (fee_buy_percent): <input id="fee_buy_percent"/></label></div>
+            <div class="settings-row"><label><span class="material-icons settings-icon">percent</span> نسبة عمولة البيع (fee_sell_percent): <input id="fee_sell_percent"/></label></div>
+            <div style="margin-top:12px"><button id="saveSettingsBtn"><span class="material-icons">save</span> حفظ الإعدادات</button></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <div class="report-full">
+      <h2>لوحة التقارير - عرض كامل</h2>
+      <div class="report-controls">
+        <label>الفترة: <select id="reportPeriodFull"><option value="day">يومي</option><option value="week">أسبوعي</option><option value="month" selected>شهري</option></select></label>
+        <label><input type="checkbox" id="comparePrevFull"/> مقارنة بالفترة السابقة</label>
+        <button id="refreshReportsFull">تحديث</button>
+      </div>
+      <div id="reportCardsFull" class="report-cards"></div>
+      <div id="topListsFull" class="report-cards" style="margin-top:12px"></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-top:12px">
+        <div style="flex:1"><div style="height:520px" class="report-chart-wrap"><canvas id="reportsChartFull"></canvas></div></div>
+        <div style="width:360px"><h4>توزيع شراء/بيع</h4><canvas id="buySellChartFull" style="max-width:320px"></canvas><div id="perfIndicatorFull" style="margin-top:12px"></div></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>
