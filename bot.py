@@ -53,6 +53,20 @@ def index():
     return jsonify({"status": "alive", "message": "VANTAGE EXCHANGE Bot is running"}), 200
 
 
+@app.route('/status', methods=['GET'])
+def status():
+    # Expose non-sensitive runtime state for debugging
+    try:
+        admin_configured = bool(ADMIN_CHAT_ID or GROUP_LINK)
+    except Exception:
+        admin_configured = False
+    return jsonify({
+        "status": "ok",
+        "bot_thread_started": bool(bot_thread_started),
+        "admin_configured": admin_configured
+    }), 200
+
+
 def run_health_server():
     port = int(os.getenv('PORT', '5000'))
     app.run(host='0.0.0.0', port=port)
@@ -1290,6 +1304,9 @@ def ensure_settings_table():
 
 
 def start_bot():
+    logging.info('Starting Telegram bot background thread...')
+    if BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN' or not BOT_TOKEN:
+        logging.warning('BOT_TOKEN looks unset or default; bot will not connect to Telegram until BOT_TOKEN is configured')
     application = Application.builder().token(BOT_TOKEN).build()
     global RESOLVED_ADMIN_CHAT_ID
 
@@ -1353,7 +1370,11 @@ def start_bot():
             logging.exception('forward_incoming failed')
 
     application.add_handler(MessageHandler(filters.ALL & ~filters.COMMAND, forward_incoming))
-    application.run_polling()
+    try:
+        logging.info('Telegram Application polling starting')
+        application.run_polling()
+    except Exception:
+        logging.exception('Telegram polling stopped with an exception')
 
 
 bot_thread_started = False
