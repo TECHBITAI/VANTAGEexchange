@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sqlite3
 import logging
 import asyncio
@@ -50,7 +50,9 @@ def run_health_server():
 
 BOT_TOKEN = os.getenv('BOT_TOKEN', 'YOUR_TELEGRAM_BOT_TOKEN')
 DEFAULT_ADMIN_CHAT = None
-GROUP_LINK = os.getenv('ADMIN_GROUP_LINK').strip() or None
+GROUP_LINK = os.getenv('ADMIN_GROUP_LINK')
+if GROUP_LINK:
+    GROUP_LINK = GROUP_LINK.strip() or None
 admin_id_raw = os.getenv('ADMIN_CHAT_ID', '').strip()
 
 if admin_id_raw.startswith('-'):
