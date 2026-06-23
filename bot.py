@@ -5,7 +5,7 @@ import asyncio
 import threading
 from pathlib import Path
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from telegram.ext import (
     Application,
@@ -42,6 +42,15 @@ app = Flask(__name__)
 @app.route('/health', methods=['GET'])
 def health_check():
     return jsonify({"status": "alive"}), 200
+
+
+@app.route('/', methods=['GET'])
+def index():
+    # Serve frontend index if available, otherwise return health JSON
+    index_path = Path('frontend/index.html')
+    if index_path.exists():
+        return send_from_directory('frontend', 'index.html')
+    return jsonify({"status": "alive", "message": "VANTAGE EXCHANGE Bot is running"}), 200
 
 
 def run_health_server():
